@@ -1,0 +1,61 @@
+-- Crear la base de datos
+CREATE DATABASE empresa;
+
+-- Usar la base de datos recién creada
+USE empresa;
+
+-- Crear la tabla de departamentos
+CREATE TABLE departamentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+-- Crear la tabla de empleados
+CREATE TABLE empleados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    salario DECIMAL(10, 2) NOT NULL,
+    antiguedad INT NOT NULL, -- antigüedad en años
+    departamento_id INT,
+    FOREIGN KEY (departamento_id) REFERENCES departamentos(id)
+);
+
+-- Crear la tabla de proyectos
+CREATE TABLE proyectos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    empleado_id INT,
+    FOREIGN KEY (empleado_id) REFERENCES empleados(id)
+);
+
+-- Insertar datos en la tabla de departamentos
+INSERT INTO departamentos (nombre) VALUES 
+('Ventas'), 
+('Marketing'), 
+('Desarrollo'), 
+('Recursos Humanos');
+
+-- Insertar datos en la tabla de empleados
+INSERT INTO empleados (nombre, salario, antiguedad, departamento_id) VALUES 
+('Carlos Pérez', 35000, 5, 1), 
+('Ana Martínez', 28000, 2, 2), 
+('Luis Hernández', 45000, 8, 3), 
+('María López', 40000, 10, 4),
+('Jorge Sánchez', 30000, 1, 1);
+('Valentina Castro', 35000, 4, 1),  
+('Andrés Jiménez', 42000, 5, 2),   
+('Isabel Torres', 29000, 3, 3),    
+('David Morales', 45000, 9, 4),     
+('Gabriela Soto', 31000, 1, 5),     
+('Julio Díaz', 50000, 7, 6),         
+('Renata Salazar', 28000, 2, 7),     
+('Hugo Aguirre', 55000, 8, 8),      
+('Mariana Peña', 34000, 6, 1),      
+('Nicolás Mendoza', 46000, 4, 2);     
+
+-- Insertar datos en la tabla de proyectos
+INSERT INTO proyectos (nombre, empleado_id) VALUES 
+('Proyecto A', 1), 
+('Proyecto B', 1), 
+('Proyecto C', 2), 
+('Proyecto D', 3);
